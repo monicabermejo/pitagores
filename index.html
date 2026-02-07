@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unitat 6: Pitàgores - Dossier</title>
+    <title>Unitat 6: Pitàgores - Dossier v15.5</title>
     
     <script>
         window.MathJax = {
@@ -132,7 +132,6 @@
             opacity: 0.7;
         }
         .section-content {
-            /* Content wrapper to hide/show */
             display: block;
             animation: slideDown 0.5s ease-out;
         }
@@ -161,6 +160,15 @@
             margin: 15px 0;
             border: 1px solid #aed6f1;
         }
+        
+        .theory-review {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .theory-review h4 { color: #0d47a1; margin-top: 0; }
 
         .formula-box {
             background-color: #fff8e1;
@@ -201,7 +209,68 @@
         }
         button.check-btn:hover { background-color: #2980b9; }
 
-        /* UNLOCK BUTTONS (NEXT SECTION) */
+        /* MODAL STYLES */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.5); 
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: black; }
+        
+        .roots-table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+        .roots-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            background: #f9f9f9;
+        }
+        
+        /* MINI CALCULATOR STYLES */
+        .mini-calc {
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .mini-calc input { width: 80px; text-align: center; }
+        .mini-calc button { background: #f39c12; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .mini-calc span { font-weight: bold; font-size: 1.2rem; color: #f1c40f; }
+
+        /* UNLOCK BUTTONS */
         .unlock-btn-container {
             margin-top: 40px;
             text-align: center;
@@ -258,7 +327,18 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 30px;
+            text-align: left;
+        }
+
+        /* WELCOME BOX */
+        #welcome-screen {
             text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent);
         }
 
         /* --- DRAG & DROP STYLES --- */
@@ -378,10 +458,16 @@
 
 <div class="container">
 
-    <section id="sec_1">
-        <h2 data-i18n="b1_title">1. Recordatori</h2>
+    <div id="welcome-screen">
+        <h2 style="color:var(--primary); margin-top:0;">Benvinguts a la Unitat 6!</h2>
+        <p style="font-size:1.1rem; color:#555;">Esteu preparats per resoldre el repte i convertir-vos en experts?</p>
+        <button class="btn-next-section" onclick="startDossier()" style="font-size: 1.3rem; padding: 15px 40px;">Comencem! 🚀</button>
+    </div>
+
+    <section id="sec_1" class="locked-section">
+        <h2 data-i18n="b1_title">1. Recordatori <span class="lock-icon" style="display:inline;">🔒</span></h2>
         
-        <div class="section-content">
+        <div class="section-content" style="display:none;" id="content_1">
             <h3 data-i18n="b1_geo_title">1.1 Geometria Bàsica</h3>
             
             <div class="concept-box">
@@ -489,6 +575,7 @@
             <div id="dd_feedback" class="feedback" style="text-align:center;"></div>
 
             <h4 data-i18n="b1_sub2">1.1.3 Àrea i Perímetre</h4>
+            
             <div class="concept-box">
                 <div style="display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap;">
                     <div style="flex:1; min-width: 250px;">
@@ -501,17 +588,18 @@
                         <h5 style="margin-top:0;">🟩 Àrea (La Gespa)</h5>
                         <p data-i18n="area_def">És la superfície de dins. Imagina que has de comprar rotllos de gespa per cobrir el terra.</p>
                         <p><strong>Unitats quadrades:</strong> $m^2, cm^2$</p>
-                        <div class="formula-box">
+                        <div class="formula-box" style="font-size:0.9rem;">
                             Rectangle: $A = b \cdot h$<br>
-                            Triangle: $A = \frac{b \cdot h}{2}$
+                            Triangle: $A = \frac{b \cdot h}{2}$<br>
+                            Cercle: $A = \pi \cdot r^2$ ($L = 2\pi r$)
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid-2">
+            <div class="grid-3">
                 <div class="exercise">
-                    <h5 data-i18n="rev_ex1_title" style="margin-top:0;">A. El Quadrat (Text)</h5>
+                    <h5 data-i18n="rev_ex1_title" style="margin-top:0;">A. El Quadrat</h5>
                     <p data-i18n="rev_ex1_desc">Tenim un quadrat de costat 5 cm.</p>
                     <label>Perímetre:</label> <input type="number" id="rev_text_1_p"> cm<br>
                     <label>Àrea:</label> <input type="number" id="rev_text_1_a"> $cm^2$<br>
@@ -520,7 +608,7 @@
                 </div>
 
                 <div class="exercise">
-                    <h5 data-i18n="rev_ex2_title" style="margin-top:0;">B. El Triangle (Text)</h5>
+                    <h5 data-i18n="rev_ex2_title" style="margin-top:0;">B. El Triangle</h5>
                     <p data-i18n="rev_ex2_desc">Un triangle té base = 10 m i altura = 4 m.</p>
                     <label>Àrea:</label> <input type="number" id="rev_text_2_a"> $m^2$<br>
                     <button class="check-btn" onclick="checkRevText2()" data-i18n="btn_check">Comprovar</button>
@@ -528,7 +616,7 @@
                 </div>
 
                 <div class="exercise visual-problem">
-                    <h5 data-i18n="rev_p1_title" style="margin-top:0;">C. El Cub (Visual)</h5>
+                    <h5 data-i18n="rev_p1_title" style="margin-top:0;">C. El Cub</h5>
                     <svg width="120" height="120" viewBox="0 0 150 150">
                         <rect x="10" y="10" width="120" height="120" fill="black"/>
                         <rect x="12" y="12" width="38" height="38" fill="#e74c3c" stroke="black"/>
@@ -543,7 +631,7 @@
                         <path d="M 12 135 L 50 135" stroke="black" marker-end="url(#arrow)"/>
                         <text x="20" y="145" font-size="12">1.5 cm</text>
                     </svg>
-                    <p data-i18n="rev_p1_desc">Un quadret petit fa 1.5 cm de costat.</p>
+                    <p data-i18n="rev_p1_desc_v15">Calcula l'àrea i el perímetre d'una cara d'aquest cub de Rubik.</p>
                     <label>Perímetre:</label> <input type="number" id="ans_rev1_p"><br>
                     <label>Àrea:</label> <input type="number" id="ans_rev1_a"><br>
                     <button class="check-btn" onclick="checkRevVisual1()" data-i18n="btn_check">Comprovar</button>
@@ -551,15 +639,15 @@
                 </div>
 
                 <div class="exercise visual-problem">
-                    <h5 data-i18n="rev_p2_title" style="margin-top:0;">D. El Senyal (Visual)</h5>
+                    <h5 data-i18n="rev_p2_title" style="margin-top:0;">D. El Senyal</h5>
                     <svg width="120" height="120" viewBox="0 0 180 150">
                         <path d="M 10 10 L 150 10 L 80 130 Z" fill="white" stroke="#c0392b" stroke-width="8"/>
                         <text x="80" y="50" text-anchor="middle" font-weight="bold" font-size="14">CEDIU EL</text>
                         <text x="80" y="65" text-anchor="middle" font-weight="bold" font-size="14">PAS</text>
                         <line x1="10" y1="5" x2="150" y2="5" stroke="blue"/>
-                        <text x="130" y="18" fill="blue" font-size="10">c = 60</text>
+                        <text x="130" y="25" fill="blue" font-size="20" font-weight="bold">c=60</text>
                         <line x1="80" y1="10" x2="80" y2="130" stroke="green" stroke-dasharray="4"/>
-                        <text x="85" y="100" fill="green" font-size="12" font-weight="bold">h = 52</text>
+                        <text x="85" y="110" fill="green" font-size="20" font-weight="bold">h=52</text>
                     </svg>
                     <p data-i18n="rev_p2_desc">Senyal triangular equilàter.</p>
                     <label>Perímetre:</label> <input type="number" id="ans_rev2_p"><br>
@@ -567,12 +655,33 @@
                     <button class="check-btn" onclick="checkRevVisual2()" data-i18n="btn_check">Comprovar</button>
                     <div id="feed_rev_vis_2" class="feedback"></div>
                 </div>
+
+                <div class="exercise visual-problem">
+                    <h5 data-i18n="rev_circle_title" style="margin-top:0;">E. La Circumferència</h5>
+                    <svg width="120" height="120" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="#8e44ad" stroke-width="3" fill="#f3e5f5"/>
+                        <line x1="50" y1="50" x2="90" y2="50" stroke="black" stroke-width="2"/>
+                        <text x="70" y="40" text-anchor="middle" font-size="12" font-weight="bold">r=5 cm</text>
+                    </svg>
+                    <p></p>
+                    <label>Longitud:</label> <input type="number" id="ans_rev_circle_p"><br>
+                    <label>Àrea:</label> <input type="number" id="ans_rev_circle_a"><br>
+                    <button class="check-btn" onclick="checkRevCircle()" data-i18n="btn_check">Comprovar</button>
+                    <div id="feed_rev_circle" class="feedback"></div>
+                </div>
             </div>
 
             <h3 data-i18n="roots_title">1.2 L'Arrel Quadrada</h3>
             <div class="concept-box">
                 <h4 data-i18n="roots_desc" style="margin-top:0;">L'operació contrària al Quadrat</h4>
                 <p data-i18n="roots_def">L'arrel quadrada ($\sqrt{x}$) respon a la pregunta: <strong>"Quin nombre multiplicat per ell mateix dóna aquest resultat?"</strong></p>
+                
+                <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:20px 0;">
+                    <button onclick="openRootsModal()" style="background:#8e44ad; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">
+                        📖 Veure les 15 primeres arrels exactes
+                    </button>
+                </div>
+
                 <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
                     <div class="formula-box">
                         $\sqrt{9} = 3$ <br> <small>(perquè $3 \cdot 3 = 9$)</small>
@@ -583,6 +692,13 @@
                     <div class="formula-box" style="border-left-color: #c0392b;">
                         $\sqrt{10} \approx 3.16$ <br> <small>(No és exacte!)</small>
                     </div>
+                </div>
+
+                <div class="mini-calc">
+                    <span>$\sqrt{x}$ Calculadora:</span>
+                    <input type="number" id="calc_input" placeholder="Nombre">
+                    <button onclick="calculateRoot()">Calcular</button>
+                    <span id="calc_result">?</span>
                 </div>
             </div>
             
@@ -616,6 +732,36 @@
             </div>
         </div>
     </section>
+
+    <div id="rootsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeRootsModal()">&times;</span>
+            <h3 style="color:var(--primary); margin-top:0;">Taula d'Arrels Exactes (1-15)</h3>
+            <div style="display:flex; justify-content:space-around;">
+                <table class="roots-table">
+                    <tr><td>&radic;1 = 1</td></tr>
+                    <tr><td>&radic;4 = 2</td></tr>
+                    <tr><td>&radic;9 = 3</td></tr>
+                    <tr><td>&radic;16 = 4</td></tr>
+                    <tr><td>&radic;25 = 5</td></tr>
+                </table>
+                <table class="roots-table">
+                    <tr><td>&radic;36 = 6</td></tr>
+                    <tr><td>&radic;49 = 7</td></tr>
+                    <tr><td>&radic;64 = 8</td></tr>
+                    <tr><td>&radic;81 = 9</td></tr>
+                    <tr><td>&radic;100 = 10</td></tr>
+                </table>
+                <table class="roots-table">
+                    <tr><td>&radic;121 = 11</td></tr>
+                    <tr><td>&radic;144 = 12</td></tr>
+                    <tr><td>&radic;169 = 13</td></tr>
+                    <tr><td>&radic;196 = 14</td></tr>
+                    <tr><td>&radic;225 = 15</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <section id="sec_2" class="locked-section">
         <h2 data-i18n="b2_title">2. Identificació Visual <span class="lock-icon">🔒</span></h2>
@@ -823,11 +969,11 @@
                     <input type="number" id="rp_9"> <span id="f_rp_9"></span>
                 </div>
                 <div class="exercise">
-                    <p data-i18n="rp_10_txt">10. Tenim un problema amb la mudança. Tenim un armari tombat a terra que fa 2.4 metres d'alt i 0.7 metres de fons. El sostre de l'habitació està a 2.6 metres. Si intentem aixecar l'armari posant-lo dret, la diagonal tocarà al sostre? Calcula quant mesura la diagonal de l'armari.</p>
+                    <p data-i18n="rp_10_txt">10. Tenim un problema amb la mudança. Tenim un armari tombat a terra que fa 2.4 metres d'alt i 0.7 metres de fons. El sostre de l'habitació està a 2.6 metres. Si intentem aixecar l'armari posant-lo dret, la diagonal tocarà en el techo? Calcula quant mesura la diagonal de l'armari.</p>
                     <input type="number" id="rp_10"> <span id="f_rp_10"></span>
                 </div>
                 <div class="exercise">
-                    <p data-i18n="rp_11_txt">11. T'has comprat una funda per a la teva nova tablet. La pantalla fa 12 cm d'ample i 9 cm d'alt. El fabricant de fundes et demana la mesura de la diagonal per saber si hi cap. Quants cm fa la diagonal?</p>
+                    <p data-i18n="rp_11_txt">11. T'has comprat una funda per a la teva nova tablet. La pantalla mide 12 cm de ancho y 9 cm de alto. El fabricante de fundes te pide la medida de la diagonal para saber si cabe. ¿Cuántos cm hace la diagonal?</p>
                     <input type="number" id="rp_11"> <span id="f_rp_11"></span>
                 </div>
                 <div class="exercise">
@@ -848,8 +994,16 @@
             </div>
 
             <div class="creative-box">
-                <h3 data-i18n="b4_challenge_title">Ara et toca a tu!</h3>
-                <p data-i18n="b4_challenge_desc">Inventa 4 problemes de Pitàgores amb la seva història (com els que has fet aquí dalt) i escriu-los al teu quadern. Després, intercanvia el quadern amb un company i intenteu resoldre els del altre.</p>
+                <h3 data-i18n="b4_challenge_title">🌟 Activitat Avaluable: Sigueu els Professors!</h3>
+                
+                <div style="text-align: left; margin-top: 15px;">
+                    <p data-i18n="b4_challenge_desc">
+                        <strong>Fase 1: Parelles.</strong> Cadascú inventa 1 problema i el company el resol.<br><br>
+                        <strong>Fase 2: Grups de 4.</strong> Trieu el millor problema dels 4.<br><br>
+                        <strong>Fase 3: Preparació.</strong> Poliu l'enunciat i la solució.<br><br>
+                        <strong>Fase 4: Pissarra.</strong> Sortiu a explicar-lo com a professors: plantegeu, pregunteu a la classe i resoleu pas a pas.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -905,7 +1059,7 @@
             b1_intro_text: "Abans de començar amb Pitàgores, necessitem revisar dues eines bàsiques de 1r d'ESO.",
             b1_class_title: "Classificació de Triangles",
             b1_class_desc: "Un triangle pot tenir dos noms alhora:",
-            b1_class_sides: "Segons els <strong>costats</strong>: Equilàter, Isòsceles, Escalè.</li>",
+            b1_class_sides: "Segons els <strong>costats</strong>: Equilàter, Isòsceles, Escalè.",
             b1_class_angles: "Segons els <strong>angles</strong>: Acutangle, Rectangle, Obtusangle.",
             b1_important: "IMPORTANT: En aquesta unitat ens centrarem en el Triangle Rectangle (té un angle de 90°).",
             ex1_title: "Exercici Ràpid 1",
@@ -922,14 +1076,16 @@
             perim_def: "És la longitud del contorn. Imagina que has de comprar filferro per tancar un jardí.",
             area_def: "És la superfície de dins. Imagina que has de comprar rotllos de gespa per cobrir el terra.",
             b1_sub2: "1.1.3 Àrea i Perímetre",
-            rev_ex1_title: "A. El Quadrat (Text)",
+            rev_ex1_title: "A. El Quadrat",
             rev_ex1_desc: "Tenim un quadrat de costat 5 cm.",
-            rev_ex2_title: "B. El Triangle (Text)",
+            rev_ex2_title: "B. El Triangle",
             rev_ex2_desc: "Un triangle té base = 10 m i altura = 4 m.",
-            rev_p1_title: "C. El Cub (Visual)",
-            rev_p1_desc: "Un quadret petit fa 1.5 cm de costat.",
-            rev_p2_title: "D. El Senyal (Visual)",
+            rev_p1_title: "C. El Cub",
+            rev_p1_desc_v15: "Calcula l'àrea i el perímetre d'una cara d'aquest cub de Rubik.",
+            rev_p2_title: "D. El Senyal",
             rev_p2_desc: "Senyal triangular equilàter.",
+            rev_circle_title: "E. La Circumferència",
+            rev_circle_desc: "Usa $\\pi = 3.14$",
             // ROOTS
             roots_title: "1.2 L'Arrel Quadrada",
             roots_desc: "L'operació contrària al Quadrat",
@@ -968,8 +1124,8 @@
             btn_check: "Comprovar",
             ok: "Correcte!",
             ko: "Torna-ho a provar",
-            b4_challenge_title: "Ara et toca a tu!",
-            b4_challenge_desc: "Inventa 4 problemes de Pitàgores amb la seva història (com els que has fet aquí dalt) i escriu-los al teu quadern. Després, intercanvia el quadern amb un company i intenteu resoldre els del altre.",
+            b4_challenge_title: "🌟 Activitat Avaluable: Sigueu els Professors!",
+            b4_challenge_desc: "<strong>Fase 1: Parelles.</strong> Cadascú inventa 1 problema i el company el resol.<br><br><strong>Fase 2: Grups de 4.</strong> Trieu el millor problema dels 4.<br><br><strong>Fase 3: Preparació.</strong> Poliu l'enunciat i la solució.<br><br><strong>Fase 4: Pissarra.</strong> Sortiu a explicar-lo com a professors: plantegeu, pregunteu a la classe i resoleu pas a pas.",
             ext_title: "🚀 Nivell Expert: Ternes Pitagòriques",
             ext_desc: "Has acabat tots els exercicis? Descobreix el secret dels egipcis per calcular sense calculadora.",
             ext_btn_unlock: "Desbloquejar Nivell Expert",
@@ -993,8 +1149,8 @@
             rp_7_txt: "7. Hem anat de càmping i estem muntant una tenda de campanya tipus 'tipi'. Té un pal central que fa 2 metres d'alt. Hem de clavar els tensors (cordes) al terra a una distància de 1.5 metres del pal. Quina longitud ha de tenir la corda tensa?",
             rp_8_txt: "8. Estàs fent volar un estel a la platja i has deixat anar 17 metres de fil. Just en aquest moment, l'estel està volant exactament a sobre d'una font que es troba a 8 metres d'on ets tu. A quina altura està volant l'estel?",
             rp_9_txt: "9. Un enginyer ha de subjectar una gran antena de ràdio que fa 24 metres d'altura. Vol posar un cable de seguretat des de la punta de dalt fins a un bloc de formigó que està a 7 metres de la base. Quants metres de cable necessita comprar?",
-            rp_10_txt: "10. Tenim un problema amb la mudança. Tenim un armari tombat a terra que fa 2.4 metres d'alt i 0.7 metres de fons. El sostre de l'habitació està a 2.6 metres. Si intentem aixecar l'armari posant-lo dret, la diagonal tocarà al sostre? Calcula quant mesura la diagonal de l'armari.",
-            rp_11_txt: "11. T'has comprat una funda per a la teva nova tablet. La pantalla fa 12 cm d'ample i 9 cm d'alt. El fabricant de fundes et demana la mesura de la diagonal per saber si hi cap. Quants cm fa la diagonal?",
+            rp_10_txt: "10. Tenim un problema amb la mudança. Tenim un armari tombat a terra que fa 2.4 metres d'alt i 0.7 metres de fons. El sostre de l'habitació està a 2.6 metres. Si intentem aixecar l'armari posant-lo dret, la diagonal tocarà en el techo? Calcula quant mesura la diagonal de l'armari.",
+            rp_11_txt: "11. T'has comprat una funda per a la teva nova tablet. La pantalla mide 12 cm de ancho y 9 cm de alto. El fabricante de fundes te pide la medida de la diagonal para saber si cabe. ¿Cuántos cm hace la diagonal?",
             rp_12_txt: "12. És de nit i un fanal del carrer de 4 metres d'altura projecta una ombra molt llarga a terra, de 3 metres. Si haguéssim de tirar un fil des de la bombeta del fanal fins a la punta de l'ombra, quant mesuraria?",
             rp_13_txt: "13. El pare vol saber si el seu cotxe nou hi cap en diagonal a la plaça de pàrquing. La plaça fa 2.5 metres d'ample i 6 metres de llarg. Quina és la distància màxima en diagonal que hi ha a la plaça?",
             rp_14_txt: "14. L'avi té un hort rectangular tancat. Sabem que la diagonal que creua l'hort fa 10 metres i que un dels costats fa 6 metres. L'avi vol saber quants metres fa l'altre costat per plantar-hi tomaqueres. Calcula-ho.",
@@ -1027,10 +1183,12 @@
             rev_ex1_desc: "Tenemos un cuadrado de lado 5 cm.",
             rev_ex2_title: "B. El Triángulo (Texto)",
             rev_ex2_desc: "Un triángulo tiene base = 10 m y altura = 4 m.",
-            rev_p1_title: "C. El Cubo (Visual)",
-            rev_p1_desc: "Un cuadrito pequeño mide 1.5 cm de lado.",
-            rev_p2_title: "D. La Señal (Visual)",
+            rev_p1_title: "C. El Cubo",
+            rev_p1_desc_v15: "Calcula el área y el perímetro de <strong>una cara</strong> de este cubo de Rubik.",
+            rev_p2_title: "D. La Señal",
             rev_p2_desc: "Señal triangular equilátera.",
+            rev_circle_title: "E. La Circunferencia",
+            rev_circle_desc: "Usa $\\pi = 3.14$",
             // ROOTS
             roots_title: "1.2 La Raíz Cuadrada",
             roots_desc: "La operación contraria al Cuadrado",
@@ -1069,8 +1227,8 @@
             btn_check: "Comprobar",
             ok: "¡Correcto!",
             ko: "Inténtalo de nuevo",
-            b4_challenge_title: "¡Ahora te toca a ti!",
-            b4_challenge_desc: "Inventa 4 problemas de Pitágoras con su historia (como los que has hecho aquí arriba) y escríbelos en tu cuaderno. Después, intercambia el cuaderno con un compañero e intentad resolver los del otro.",
+            b4_challenge_title: "🌟 Actividad Evaluable: ¡Sed los Profesores!",
+            b4_challenge_desc: "<strong>Fase 1: Parejas.</strong> Cada uno inventa 1 problema y el compañero lo resuelve.<br><br><strong>Fase 2: Grups de 4.</strong> Elegid el mejor problema de los 4.<br><br><strong>Fase 3: Preparación.</strong> Pulid el enunciado y la solución.<br><br><strong>Fase 4: Pizarra.</strong> Salid a explicarlo como profesores: plantead, preguntad a la clase y resolved paso a paso.",
             ext_title: "🚀 Nivel Experto: Ternas Pitagóricas",
             ext_desc: "¿Has acabado todos los ejercicios? Descubre el secreto de los egipcios para calcular sin calculadora.",
             ext_btn_unlock: "Desbloquear Nivel Experto",
@@ -1095,7 +1253,7 @@
             rp_8_txt: "8. Estás haciendo volar una cometa en la playa y has soltado 17 metros de hilo. Justo en ese momento, la cometa está volando exactamente encima de una fuente que se encuentra a 8 metros de donde estás tú. ¿A qué altura está volando la cometa?",
             rp_9_txt: "9. Un ingeniero tiene que sujetar una gran antena de radio que mide 24 metros de altura. Quiere poner un cable de seguridad desde la punta de arriba hasta un bloque de hormigón que está a 7 metros de la base. ¿Cuántos metros de cable necesita comprar?",
             rp_10_txt: "10. Tenemos un problema con la mudanza. Tenemos un armario tumbado en el suelo que mide 2.4 metros de alto y 0.7 metros de fondo. El techo de la habitación está a 2.6 metros. Si intentamos levantar el armario poniéndolo de pie, ¿la diagonal tocará en el techo? Calcula cuánto mide la diagonal del armario.",
-            rp_11_txt: "11. Te has comprado una funda para tu nueva tablet. La pantalla mide 12 cm de ancho y 9 cm de alto. El fabricante de fundas te pide la medida de la diagonal para saber si cabe. ¿Cuántos cm hace la diagonal?",
+            rp_11_txt: "11. Te has comprado una funda para tu nueva tablet. La pantalla mide 12 cm de ancho y 9 cm de alto. El fabricante de fundes te pide la medida de la diagonal para saber si cabe. ¿Cuántos cm hace la diagonal?",
             rp_12_txt: "12. Es de noche y una farola de la calle de 4 metros de altura proyecta una sombra muy larga en el suelo, de 3 metros. Si tuviéramos que tirar un hilo desde la bombilla de la farola hasta la punta de la sombra, ¿cuánto mediría?",
             rp_13_txt: "13. Papá quiere saber si su coche nuevo cabe en diagonal en la plaza de parking. La plaza mide 2.5 metros de ancho y 6 metros de largo. ¿Cuál es la distancia máxima en diagonal que hay en la plaza?",
             rp_14_txt: "14. El abuelo tiene un huerto rectangular vallado. Sabemos que la diagonal que cruza el huerto mide 10 metros y que uno de los lados mide 6 metros. El abuelo quiere saber cuántos metros mide el otro lado para plantar tomateras. Calcúlalo.",
@@ -1222,6 +1380,13 @@
         if(window.MathJax) MathJax.typeset();
     }
 
+    function startDossier() {
+        document.getElementById('sec_1').classList.remove('locked-section');
+        document.getElementById('content_1').style.display = 'block';
+        document.getElementById('welcome-screen').style.display = 'none';
+        document.getElementById('sec_1').scrollIntoView({behavior: 'smooth'});
+    }
+
     // --- CHECK EX 1 ---
     function checkEx1() {
         const val = document.getElementById('ex1_input').value;
@@ -1294,6 +1459,7 @@
         const p = parseFloat(document.getElementById('ans_rev1_p').value);
         const a = parseFloat(document.getElementById('ans_rev1_a').value);
         const fb = document.getElementById('feed_rev_vis_1');
+        // Cube face: side 1.5*3=4.5. Area=20.25. Perim=18
         if (p === 18 && a === 20.25) { fb.innerHTML = t[lang].ok; fb.className="feedback correct"; }
         else { fb.innerHTML = lang==='ca' ? "Pista: Costat gran = 1.5 x 3 = 4.5" : "Pista: Lado grande = 1.5 x 3 = 4.5"; fb.className="feedback incorrect"; }
     }
@@ -1304,6 +1470,19 @@
         const fb = document.getElementById('feed_rev_vis_2');
         if (p === 180 && a === 1560) { fb.innerHTML = t[lang].ok; fb.className="feedback correct"; }
         else { fb.innerHTML = lang==='ca' ? "Pista: Àrea = (60 x 52) / 2" : "Pista: Área = (60 x 52) / 2"; fb.className="feedback incorrect"; }
+    }
+
+    function checkRevCircle() {
+        const p = parseFloat(document.getElementById('ans_rev_circle_p').value);
+        const a = parseFloat(document.getElementById('ans_rev_circle_a').value);
+        const fb = document.getElementById('feed_rev_circle');
+        // r=5. Area=3.14*25=78.5. Length=2*3.14*5=31.4
+        // Allow tiny margin
+        if ( (p>=31.3 && p<=31.5) && (a>=78.4 && a<=78.6) ) { 
+            fb.innerHTML = t[lang].ok; fb.className="feedback correct"; 
+        } else { 
+            fb.innerHTML = t[lang].ko; fb.className="feedback incorrect"; 
+        }
     }
 
     // --- CHECK ROOT EXERCISES ---
@@ -1318,6 +1497,39 @@
     function checkRoot3() {
         const v = document.getElementById('sq_3').value;
         document.getElementById('f_sq_3').innerHTML = (v === 'no') ? "✅" : "❌";
+    }
+
+    // --- ROOTS MODAL LOGIC ---
+    function openRootsModal() {
+        document.getElementById('rootsModal').style.display = 'block';
+    }
+    function closeRootsModal() {
+        document.getElementById('rootsModal').style.display = 'none';
+    }
+    // Close modal if clicked outside
+    window.onclick = function(event) {
+        let modal = document.getElementById('rootsModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // --- MINI CALCULATOR LOGIC ---
+    function calculateRoot() {
+        let input = document.getElementById('calc_input').value;
+        let resultSpan = document.getElementById('calc_result');
+        if (input === "") return;
+        let val = parseFloat(input);
+        if (val < 0) {
+            resultSpan.innerHTML = "Error";
+            resultSpan.style.color = "#c0392b";
+        } else {
+            let res = Math.sqrt(val);
+            // Format nicely: if integer, show integer. If float, show 2 decimals.
+            let formatted = Number.isInteger(res) ? res : res.toFixed(2);
+            resultSpan.innerHTML = formatted;
+            resultSpan.style.color = "#f1c40f";
+        }
     }
 
     // --- HYPO GAME ---
